@@ -1,8 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chinese Tea Website
+
+A modern e-commerce website for selling authentic Chinese tea built with Next.js, TypeScript, and Tailwind CSS.
+
+🔗[Live Demo]()
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,13 +24,45 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+
+- `/src/app`: Contains the Next.js application code using the App Router
+- `/src/components`: Reusable React components
+- `/public/images`: Static image files
+
+## Image Files Needed
+
+Before running the website, you need to add the following image files to the `/public/images/` directory:
+
+- `logo.png`: Your tea shop logo
+- `hero-tea.jpg`: Hero image for the homepage banner
+- `green-tea.jpg`: Image for green tea category
+- `oolong-tea.jpg`: Image for oolong tea category
+- `black-tea.jpg`: Image for black tea category
+- `puerh-tea.jpg`: Image for pu-erh tea category
+- `tea-ceremony.jpg`: Image for the about section
+
+## Features
+
+- Responsive design for mobile, tablet, and desktop
+- Product category showcase
+- About section highlighting tea heritage
+- Customer testimonials
+- Newsletter subscription
+- Mobile-friendly navigation
+- Footer with important links and contact information
+
+## Next Steps
+
+- Add product detail pages
+- Implement shopping cart functionality
+- Create checkout flow
+- Add user authentication
+- Build admin dashboard for managing products
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

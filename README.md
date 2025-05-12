@@ -2,7 +2,7 @@
 
 A modern e-commerce website for selling authentic Chinese tea built with Next.js, TypeScript, and Tailwind CSS.
 
-🔗[Live Demo]()
+🔗[Live Demo](https://tea-website-zeta.vercel.app/)
 
 ## Getting Started
 

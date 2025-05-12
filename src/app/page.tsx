@@ -11,7 +11,7 @@ export default function Home() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.8, ease: "easeOut" }
     }
   };
 
@@ -22,6 +22,22 @@ export default function Home() {
       transition: {
         staggerChildren: 0.2
       }
+    }
+  };
+
+  const hoverScale = {
+    hover: {
+      scale: 1.03,
+      transition: { duration: 0.3, ease: "easeInOut" }
+    }
+  };
+
+  const imageReveal = {
+    hidden: { opacity: 0, filter: "blur(10px)" },
+    visible: { 
+      opacity: 1, 
+      filter: "blur(0px)",
+      transition: { duration: 1.2, ease: "easeOut" }
     }
   };
 
@@ -36,17 +52,35 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-4 leading-tight">
+            <motion.h1 
+              className="text-4xl md:text-5xl font-bold text-green-800 mb-4 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               Premium Chinese Tea
-            </h1>
-            <h2 className="text-xl md:text-2xl text-green-700 mb-6">
+            </motion.h1>
+            <motion.h2 
+              className="text-xl md:text-2xl text-green-700 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Authentic Chinese Tea Tradition
-            </h2>
-            <p className="text-gray-700 mb-8 leading-relaxed">
+            </motion.h2>
+            <motion.p 
+              className="text-gray-700 mb-8 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               Explore thousands of years of tea culture, and experience the perfect blend of nature and tradition. 
               We carefully select quality tea leaves and preserve ancient craftsmanship to bring you an authentic Chinese tea experience.
-            </p>
+            </motion.p>
             <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -54,7 +88,13 @@ export default function Home() {
                 href="/products"
                 className="bg-green-700 hover:bg-green-800 text-white font-medium py-3 px-8 rounded-lg inline-flex items-center transition-all duration-300 shadow-md hover:shadow-lg"
               >
-                <FaLeaf className="mr-2" />
+                <motion.span 
+                  animate={{ rotate: [0, 10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, repeatType: "mirror" }}
+                  className="inline-block mr-2"
+                >
+                  <FaLeaf />
+                </motion.span>
                 Explore Our Teas
               </Link>
             </motion.div>
@@ -65,10 +105,26 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-green-200 to-green-50 rounded-lg shadow-xl overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-green-300 via-green-100 to-green-50 opacity-60 mix-blend-overlay"></div>
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-tr from-green-200 to-green-50 rounded-lg shadow-xl overflow-hidden"
+              variants={imageReveal}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div 
+                className="absolute inset-0 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-green-300 via-green-100 to-green-50 opacity-60 mix-blend-overlay"
+                animate={{ 
+                  background: [
+                    "radial-gradient(circle, rgba(134, 239, 172, 0.6) 0%, rgba(240, 253, 244, 0.6) 100%)",
+                    "radial-gradient(circle, rgba(167, 243, 208, 0.6) 0%, rgba(209, 250, 229, 0.6) 100%)",
+                    "radial-gradient(circle, rgba(110, 231, 183, 0.6) 0%, rgba(167, 243, 208, 0.6) 100%)",
+                    "radial-gradient(circle, rgba(134, 239, 172, 0.6) 0%, rgba(240, 253, 244, 0.6) 100%)"
+                  ]
+                }}
+                transition={{ duration: 10, repeat: Infinity }}
+              ></motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-green-800/30 to-transparent"></div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -104,72 +160,162 @@ export default function Home() {
             {/* Tea Product 1 */}
             <motion.div 
               variants={fadeInUp}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl"
+              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300"
             >
-              <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-300 via-green-200 to-green-100 opacity-80"></div>
-              </div>
+              <motion.div 
+                className="h-48 bg-gradient-to-br from-green-100 to-green-200 relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.4 }
+                }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-300 via-green-200 to-green-100 opacity-80"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.8, 0.85, 0.8] 
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+                ></motion.div>
+              </motion.div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Longjing Tea</h3>
+                <motion.h3 
+                  className="text-xl font-semibold mb-2"
+                  variants={hoverScale}
+                  whileHover="hover"
+                >
+                  Longjing Tea
+                </motion.h3>
                 <p className="text-gray-600 mb-4">
                   Produced in Longjing village of West Lake in Hangzhou, with emerald color, high fragrance, mellow taste, and flat smooth shape.
                 </p>
-                <Link
-                  href="/products/longjing"
-                  className="text-green-700 hover:text-green-800 font-medium inline-flex items-center group"
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  Learn More 
-                  <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </Link>
+                  <Link
+                    href="/products/longjing"
+                    className="text-green-700 hover:text-green-800 font-medium inline-flex items-center group"
+                  >
+                    Learn More 
+                    <motion.span 
+                      className="ml-1 inline-block"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
 
             {/* Tea Product 2 */}
             <motion.div 
               variants={fadeInUp}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl"
+              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300"
             >
-              <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-300 via-amber-200 to-amber-100 opacity-80"></div>
-              </div>
+              <motion.div 
+                className="h-48 bg-gradient-to-br from-green-100 to-green-200 relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.4 }
+                }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-300 via-amber-200 to-amber-100 opacity-80"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.8, 0.85, 0.8] 
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+                ></motion.div>
+              </motion.div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Tieguanyin</h3>
+                <motion.h3 
+                  className="text-xl font-semibold mb-2"
+                  variants={hoverScale}
+                  whileHover="hover"
+                >
+                  Tieguanyin
+                </motion.h3>
                 <p className="text-gray-600 mb-4">
                   A specialty from Anxi, Fujian, this light fragrant Tieguanyin has a fresh and lasting aroma with a rich, lingering sweet aftertaste.
                 </p>
-                <Link
-                  href="/products/tieguanyin"
-                  className="text-green-700 hover:text-green-800 font-medium inline-flex items-center group"
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  Learn More 
-                  <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </Link>
+                  <Link
+                    href="/products/tieguanyin"
+                    className="text-green-700 hover:text-green-800 font-medium inline-flex items-center group"
+                  >
+                    Learn More 
+                    <motion.span 
+                      className="ml-1 inline-block"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
 
             {/* Tea Product 3 */}
             <motion.div 
               variants={fadeInUp}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl"
+              whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300"
             >
-              <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-800 via-amber-700 to-amber-600 opacity-80"></div>
-              </div>
+              <motion.div 
+                className="h-48 bg-gradient-to-br from-green-100 to-green-200 relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.4 }
+                }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-800 via-amber-700 to-amber-600 opacity-80"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.8, 0.85, 0.8] 
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, repeatType: "mirror" }}
+                ></motion.div>
+              </motion.div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Pu'er Tea</h3>
+                <motion.h3 
+                  className="text-xl font-semibold mb-2"
+                  variants={hoverScale}
+                  whileHover="hover"
+                >
+                  Pu'er Tea
+                </motion.h3>
                 <p className="text-gray-600 mb-4">
                   From Pu'er in Yunnan, this tea gets better with age, featuring a unique aged aroma and a rich, sweet aftertaste.
                 </p>
-                <Link
-                  href="/products/puer"
-                  className="text-green-700 hover:text-green-800 font-medium inline-flex items-center group"
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  Learn More 
-                  <span className="ml-1 transform transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </Link>
+                  <Link
+                    href="/products/puer"
+                    className="text-green-700 hover:text-green-800 font-medium inline-flex items-center group"
+                  >
+                    Learn More 
+                    <motion.span 
+                      className="ml-1 inline-block"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>

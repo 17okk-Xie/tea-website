@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Merriweather:wght@300;400;700&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --font-heading: 'Playfair Display', serif;
-  --font-body: 'Source Sans 3', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-accent: 'Merriweather', serif;
 }
 
 @theme inline {
@@ -30,6 +31,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 /* Animation utility classes */
@@ -54,6 +56,61 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   transform: scale(0.95);
   animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* New Animation Classes */
+.bounce-in {
+  animation: bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.jelly {
+  animation: jelly 0.8s ease-in-out both;
+}
+
+.glitch {
+  position: relative;
+  animation: glitch 1s linear infinite alternate;
+}
+
+.rotate-in {
+  animation: rotateIn 0.6s ease-out forwards;
+}
+
+.letter-spacing {
+  animation: letterSpacing 2s ease-in-out infinite alternate;
+}
+
+.wobble-text span {
+  display: inline-block;
+  animation: wobble 2s ease-in-out infinite;
+  animation-delay: calc(0.05s * var(--i));
+}
+
+/* Hover effects for links */
+.hover-grow-rotate {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.hover-grow-rotate:hover {
+  transform: scale(1.1) rotate(3deg);
+  text-shadow: 0 0 8px rgba(0, 255, 100, 0.5);
+}
+
+.hover-3d {
+  transition: all 0.3s ease;
+}
+
+.hover-3d:hover {
+  transform: perspective(500px) rotateY(15deg);
+}
+
+.hover-shadow:hover {
+  text-shadow: 3px 3px 0 #00ff00, 6px 6px 0 rgba(0, 255, 0, 0.5);
 }
 
 /* Animation keyframes */
@@ -92,5 +149,115 @@ h1, h2, h3, h4, h5, h6 {
   to { 
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  80% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes jelly {
+  0% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes letterSpacing {
+  from {
+    letter-spacing: normal;
+  }
+  to {
+    letter-spacing: 5px;
+  }
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
   }
 }
